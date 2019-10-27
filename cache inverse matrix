@@ -1,5 +1,14 @@
+#   this file is script containing functions for efficient computing of
+#   matrix inverses. Since computing the inverse of a matrix is
+#   computationally expensive (especially for large matrices) the functions
+#   defined here cache the inverse of a given matrix. Anytime the inverse of
+#   that particular matrix is needed it is taken from the cache. The inverse is
+#   only computed for new matrices (i.e., matrices other than the one stored in
+#   the special matrix object. 
+#   And all the completed code is completed by imitating the introduction.
+
 makeCacheMatrix <- function(x = matrix()) {
-    m<- NULL
+    m<- NULL 
   set <- function(y) {
           x <<- y
           m <<- NULL
@@ -12,6 +21,9 @@ makeCacheMatrix <- function(x = matrix()) {
        setinverse = setinverse,
        getinverse = getinverse)
 }
+#   The first fuction splits the data to 4 sections(set,get,setinverse,getinverse) 
+    to store the inverse matrix, and for getting the unchanged inverse matrix we can 
+    directly read the data stored in the makeCacheMatrix without useless repeated calculation.
 cacheSolve <- function(x, ...) {
   m <- x$getinverse()
   if (!is.null(m)) {
